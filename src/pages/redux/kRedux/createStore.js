@@ -2,12 +2,14 @@
  * @Author: Winnie
  * @Date: 2021-04-15 23:06:12
  * @LastEditors: Winnie
- * @LastEditTime: 2021-04-15 23:11:43
+ * @LastEditTime: 2021-04-16 11:41:01
  * @Description: 作用
  * @FilePath: /demo/src/pages/redux/kRedux/createStore.js
  */
-const createStore = (reducer,state) => {
-  let currentState = state;
+const createStore = (reducer) => {
+  // 状态
+  let currentState;
+  // 监听
   let currentListeners = [];
   const getState = () => {
     return currentState;
@@ -18,7 +20,12 @@ const createStore = (reducer,state) => {
   };
   const subscribe = (listener) => {
     currentListeners.push(listener);
+    return () => {
+      currentListeners = currentListeners.filter(l => l !== listener)
+    };
   };
+  // 手动执行一次dispatch，派发初始值
+  dispatch({ type: "INIT" });
   return {
     getState,
     dispatch,

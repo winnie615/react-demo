@@ -2,13 +2,14 @@
  * @Author: Winnie
  * @Date: 2021-04-15 19:44:26
  * @LastEditors: Winnie
- * @LastEditTime: 2021-04-15 23:13:15
+ * @LastEditTime: 2021-04-16 11:33:23
  * @Description: 作用
  * @FilePath: /demo/src/pages/redux/store/index.js
  */
 // import { createStore } from "redux";
-import createStore  from "../kRedux/createStore";
+import createStore from "../kRedux/createStore";
 
+// 定义修改规则
 function countReducer(state = 0, { type, payload }) {
   switch (type) {
     case "ADD":
@@ -20,5 +21,5 @@ function countReducer(state = 0, { type, payload }) {
   }
 }
 
-const store = createStore(countReducer, 0);
+const store = createStore(countReducer);
 export default store;
