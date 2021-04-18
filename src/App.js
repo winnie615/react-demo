@@ -2,7 +2,7 @@
  * @Author: Winnie
  * @Date: 2021-04-10 09:58:06
  * @LastEditors: Winnie
- * @LastEditTime: 2021-04-18 22:20:40
+ * @LastEditTime: 2021-04-19 00:06:54
  * @Description: 作用
  * @FilePath: /demo/src/App.js
  */
@@ -16,7 +16,8 @@ import 'antd/dist/antd.css'
 // import DialogPage  from './pages/react/lesson5/DialogPage';
 // import ReducerPage  from './pages/redux/ReducerPage';
 // import ReduxPage  from './pages/redux/ReduxPage';
-import ReactReduxPage  from './pages/redux/ReactReduxPage';
+// import ReactReduxPage  from './pages/redux/ReactReduxPage';
+import ReactReduxHooksPage  from './pages/redux/ReactReduxHooksPage';
 
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
       {/* <MyRCFieldForm/> */}
       {/* <DialogPage/> */}
       {/* <ReduxPage/> */}
-      <ReactReduxPage/>
+      {/* <ReactReduxPage/> */}
+      <ReactReduxHooksPage/>
     </div>
   );
 }
