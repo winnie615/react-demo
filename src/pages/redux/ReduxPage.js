@@ -2,13 +2,13 @@
  * @Author: Winnie
  * @Date: 2021-04-15 18:07:52
  * @LastEditors: Winnie
- * @LastEditTime: 2021-04-16 22:40:02
+ * @LastEditTime: 2021-04-18 21:51:14
  * @Description: 作用
  * @FilePath: /demo/src/pages/redux/ReduxPage.js
  */
 import React, { Component } from "react";
 import store from "./store";
-// import "./index";
+import "./index";
 export class ReduxPage extends Component {
   componentDidMount() {
     // store发生变化之后，执行subscribe的监听函数
@@ -39,13 +39,21 @@ export class ReduxPage extends Component {
       }, 1000);
     });
   };
+  add2 = () => {
+    store.dispatch({
+      type: "ADD2",
+      payload: 200,
+    });
+  }
   render() {
     return (
       <div>
         <h3> ReduxPage </h3>
         <button onClick={this.minus}> - </button>
-        <span> {store.getState()} </span>
+        <span> {store.getState().count} </span>
         <button onClick={this.asyncAdd}> + </button>
+        <div>{store.getState().count2}</div>
+        <button onClick={this.add2}> +100 </button>
       </div>
     );
   }

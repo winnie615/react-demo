@@ -2,13 +2,15 @@
  * @Author: Winnie
  * @Date: 2021-04-15 19:44:26
  * @LastEditors: Winnie
- * @LastEditTime: 2021-04-17 00:09:58
+ * @LastEditTime: 2021-04-18 21:49:54
  * @Description: 作用
  * @FilePath: /demo/src/pages/redux/store/index.js
  */
-import { createStore,applyMiddleware,combineReducers } from "redux";
-// import createStore from "../kRedux/createStore";
-// import applyMiddleware from "../kRedux/applyMiddleware";
+// import { createStore,applyMiddleware,combineReducers } from "redux";
+// import { combineReducers } from "redux";
+import createStore from "../kRedux/createStore";
+import applyMiddleware from "../kRedux/applyMiddleware";
+import combineReducers from "../kRedux/combineReducers";
 // import thunk from "redux-thunk"; // 异步解决方案
 // import logger from 'redux-logger'; //  打印日志
 
@@ -23,8 +25,18 @@ function countReducer(state = 0, { type }) {
       return state;
   }
 }
+function countReducer2(state = 0, { type, payload = 0 }) {
+  switch (type) {
+    case "ADD2":
+      return state + payload;
+    case "MINUS2":
+      return state - payload;
+    default:
+      return state;
+  }
+}
 // logger要作为applyMiddleware最后一个参数，不然不能保证action是plain object
-const store = createStore(countReducer, applyMiddleware(thunk, logger));
+const store = createStore(combineReducers({count: countReducer,count2: countReducer2}), applyMiddleware(thunk, logger));
 export default store;
 
 function logger({ getState, dispatch }) {
