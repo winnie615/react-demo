@@ -2,7 +2,7 @@
  * @Author: Winnie
  * @Date: 2021-04-10 09:58:06
  * @LastEditors: Winnie
- * @LastEditTime: 2021-04-19 00:06:54
+ * @LastEditTime: 2021-04-19 21:25:07
  * @Description: 作用
  * @FilePath: /demo/src/App.js
  */
@@ -17,8 +17,9 @@ import 'antd/dist/antd.css'
 // import ReducerPage  from './pages/redux/ReducerPage';
 // import ReduxPage  from './pages/redux/ReduxPage';
 // import ReactReduxPage  from './pages/redux/ReactReduxPage';
-import ReactReduxHooksPage  from './pages/redux/ReactReduxHooksPage';
+// import ReactReduxHooksPage  from './pages/redux/ReactReduxHooksPage';
 
+import HooksPage  from './pages/react-redux/HooksPage';
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
       {/* <DialogPage/> */}
       {/* <ReduxPage/> */}
       {/* <ReactReduxPage/> */}
-      <ReactReduxHooksPage/>
+      {/* <ReactReduxHooksPage/> */}
+      <HooksPage/>
     </div>
   );
 }
