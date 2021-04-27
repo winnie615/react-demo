@@ -2,36 +2,43 @@
  * @Author: Winnie
  * @Date: 2021-04-15 18:07:52
  * @LastEditors: Winnie
- * @LastEditTime: 2021-04-18 22:21:42
+ * @LastEditTime: 2021-04-19 00:01:06
  * @Description: 作用
  * @FilePath: /demo/src/pages/redux/ReactReduxPage.js
  */
 import React, { Component } from "react";
-import store from "./store";
-import "./index";
-export class ReactReduxPage extends Component {
-  componentDidMount() {
-    // store发生变化之后，执行subscribe的监听函数
-    // 重点，有订阅，一定要有取消订阅
-    this.unSubscribe = store.subscribe(() => {
-      this.forceUpdate();
-    });
+import {connect} from 'react-redux'
+@connect(
+  // mapStateToProps  function
+  ({count}) => ({count}),
+  // mapDispatchToProps object
+  // {
+  //   add:  () => ({
+  //     type: 'ADD'
+  //   })
+  // }
+  // mapDispatchToProps function
+  (dispatch) => {
+    const add = () => dispatch({type:'ADD'})
+    return {dispatch,add}
   }
-  componentWillUnmount() {
-    this.unSubscribe && this.unSubscribe();
-  }
-  add = () => {
-    store.dispatch({
+)
+class ReactReduxPage extends Component {
+  dispatchAdd = () => {
+    this.props.dispatch({
       type: "ADD",
       payload: 100,
     });
   };
   render() {
+    const {count, add}  =  this.props;
+    console.log(this.props); 
     return (
       <div>
         <h3> ReactReduxPage </h3>
-        <span> {store.getState().count} </span>
-        <button onClick={this.add}> + </button>
+        <span> {count} </span>
+        <button onClick={this.dispatchAdd}> dispatchAdd </button>
+        <button onClick={add}> add </button>
       </div>
     );
   }
