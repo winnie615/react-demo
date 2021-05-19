@@ -2,7 +2,7 @@
  * @Author: Winnie
  * @Date: 2021-05-16 22:18:12
  * @LastEditors: Winnie
- * @LastEditTime: 2021-05-16 22:39:31
+ * @LastEditTime: 2021-05-17 23:33:28
  * @Description: 作用
  * @FilePath: /lesson5-dva/src/routes/ExamplePage.js
  */
@@ -39,11 +39,21 @@ export class ExamplePage extends Component {
       <div>
         ExamplePage
         <Button onClick={this.dataSearch}>search</Button>
-        <Table columns={columns} dataSource={data} rowKey='id'/>
+        <Table columns={columns} dataSource={data} rowKey="id" />
       </div>
     );
   }
 }
-export default connect((state) => ({ example: state.example }), {
-  getProductData: (payload) => ({ type: "example/getProductData", payload }),
-})(ExamplePage);
+export default connect(
+  (state) => {
+    console.log(
+      "%c 🍱 state: ",
+      "font-size:20px;background-color: #7F2B82;color:#fff;",
+      state
+    );
+    return { example: state.example };
+  },
+  {
+    getProductData: (payload) => ({ type: "example/getProductData", payload }),
+  }
+)(ExamplePage);
