@@ -2,7 +2,7 @@
  * @Author: Winnie
  * @Date: 2021-05-22 21:55:20
  * @LastEditors: Winnie
- * @LastEditTime: 2021-05-24 22:10:44
+ * @LastEditTime: 2021-05-25 21:32:02
  * @Description: 作用
  * @FilePath: /react-core/src/my-react/react-dom.js
  */
@@ -28,15 +28,15 @@ function creatNode(vnode) {
     node = type.prototype.isReactComponent
       ? updateClassComponent(vnode)
       : updateFunctionComponent(vnode);
-  } else if (typeof type === 'symbol'){
-    node = document.createDocumentFragment();
-    updateFragment(vnode,node)
+  } else if (typeof type === "symbol") {
+    node = updateFragment(vnode);
   }
   return node;
 }
 // fragment
-function updateFragment(vnode,node) {
+function updateFragment(vnode) {
   const { props } = vnode;
+  let node = document.createDocumentFragment();
   if (typeof props.children === "string") {
     let childText = document.createTextNode(props.children);
     node.appendChild(childText);
@@ -50,13 +50,7 @@ function updateFragment(vnode,node) {
 function updateHostComponent(vnode) {
   const { type, props } = vnode;
   let node = document.createElement(type);
-  if (typeof props.children === "string") {
-    let childText = document.createTextNode(props.children);
-    node.appendChild(childText);
-  } else {
-    reconcileChildren(props.children, node);
-  }
-  updateNode(node, props);
+  reconcileChildren(props.children, node);
   return node;
 }
 // 函数组件处理
@@ -69,7 +63,7 @@ function updateFunctionComponent(vnode) {
 // 类组件
 function updateClassComponent(vnode) {
   const { type, props } = vnode;
-  const instance = new type(props)
+  const instance = new type(props);
   const vvnode = instance.render();
   const node = creatNode(vvnode);
   return node;
